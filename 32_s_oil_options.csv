@@ -1,0 +1,7 @@
+id,description,sign,add_description,name
+1,Минеральное CLP220 (-15/+40),CLPISO220,"C,K,F,S",CLPISO220
+2,Минеральное CLP680 (0/+40),CLPISOVG68,"C,K,F,S",CLPISOVG68
+3,Синтетическое CLP PAO VG68 (-40/+40) ,CLPISOPAOVG68,"C,K,F",CLPISOPAOVG68
+4,Синтетическое CLP PAO VG460 (-20/+40) ,CLPISOPAOVG460,"C,K,F",CLPISOPAOVG460
+5,Пищевая пром-ть (-20/+40) ,CLPISOH1VG460,"C,K,F,S",CLPISOH1VG460
+0,0,01,0,0
