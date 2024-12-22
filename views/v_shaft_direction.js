@@ -15,3 +15,5 @@ async function createViewVShaftDirection() {
     const v_view = await pool.query(sql, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVShaftDirection = createViewVShaftDirection;

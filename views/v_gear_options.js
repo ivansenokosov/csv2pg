@@ -1,4 +1,4 @@
-async function createViewVShaftDirection() {
+const createViewVGearOptions = async () => {
     const sql = `
     create view v_gear_options as
 
@@ -31,3 +31,5 @@ async function createViewVShaftDirection() {
     const v_view = await pool.query(sql, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVGearOptions = createViewVGearOptions;

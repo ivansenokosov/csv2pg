@@ -1,4 +1,4 @@
-export async function createViewVGear() {
+const createViewVGear = async () =>{
     const v_gears_view = `
 create view v_gears as 
  WITH prices AS (
@@ -48,3 +48,6 @@ create view v_gears as
     const v_gears = await pool.query(v_gears_view, []);
     console.log('v_gears: ', v_gears.rowCount);
 }
+
+
+module.exports.createViewVGear = createViewVGear;

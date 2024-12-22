@@ -1,4 +1,4 @@
-export async function createViewVOutputShaft() {
+const createViewVOutputShaft = async () => {
     const sql = `
     create view v_output_shaft as
 
@@ -15,3 +15,5 @@ SELECT v1.id_gear,
     const v_view = await pool.query(sql, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVOutputShaft = createViewVOutputShaft;

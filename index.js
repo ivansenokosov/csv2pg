@@ -1,32 +1,34 @@
 const csv = require('csv-parser')
 const { Pool } = require('pg');
 const fs = require('fs')
-// import createViewVGear from "v_gear.js";
-// import createViewVMountType from "v_mount_type.js";
-//import createViewVOutputShaft from "v_output_shaft.js"
-
-// import { createViewVShaftDirection } from "./modules/square.js";
-
-// const pool = new Pool({
-//     user: 'postgres',
-//     password: 'postgres',
-//     host: 'localhost',
-//     port: '5432',
-//     database: 'reductors',
-//   });
+const { createViewVGear } = require("./views/v_gear.js");
+const { createViewVColorOptoins } = require("./views/v_color_options.js");
+const { createViewVGearOptions } = require("./views/v_gear_options.js");
+const { createViewVMountType } = require("./views/v_mount_type.js");
+const { createViewVOilOptions } = require("./views/v_oil_options.js");
+const { createViewVOutputShaft } = require("./views/v_output_shaft.js");
+const { createViewVShaftDirection } = require("./views/v_shaft_direction.js");
 
 const pool = new Pool({
-user: 'gen_user',
-password: 'MEfkD2>+=pJWOp',
-host: '195.133.73.129',
-port: '5432',
-database: 'reductors',
-});
+    user: 'postgres',
+    password: 'postgres',
+    host: 'localhost',
+    port: '5432',
+    database: 'reductors',
+  });
+
+// const pool = new Pool({
+// user: 'gen_user',
+// password: 'MEfkD2>+=pJWOp',
+// host: '195.133.73.129',
+// port: '5432',
+// database: 'reductors',
+// });
 
    
 const files = [
-            //  {filename: '1_s_red_gear_types.csv',     table: 's_red_gear_types',     columns: 'id, name, description, mount_position_image', upload: true },
-            //   {filename: '2_s_red_steps.csv',          table: 's_red_steps',          columns: 'id, steps, kpd',                              upload: true },
+              {filename: '1_s_red_gear_types.csv',     table: 's_red_gear_types',     columns: 'id, name, description, mount_position_image', upload: true },
+              {filename: '2_s_red_steps.csv',          table: 's_red_steps',          columns: 'id, steps, kpd',                              upload: true },
             //   {filename: '3_s_red_type_of_mounts.csv', table: 's_red_type_of_mounts', columns: 'id, description, image',                      upload: true },
             //   {filename: '4_s_red_type_of_items.csv', table: 's_red_type_of_items', columns: 'id, description, image', upload: true},
             //   {filename: '5_s_red_shaft_directions.csv', table: 's_red_shaft_directions', columns: 'id, description', upload: true},
@@ -60,7 +62,7 @@ const files = [
             //   {filename: '32_s_oil_options.csv', table: 's_oil_options', columns: 'id,description,sign,add_description,name', upload: true},
             //   {filename: '33_s_warranty_options.csv', table: 's_warranty_options', columns: 'id,name,description,sign,add_description', upload: true},
             //   {filename: '34_s_item_options.csv', table: 's_item_options', columns: 'id,gear_size_list_id,gear_type_id,color_option_name,gear_option_name,item_name,oil_option_name', upload: true},
-              {filename: '35_d_prices.csv', table: 'd_prices', columns: 'id,item_name,price,date,currency_id', upload: true},
+            //   {filename: '35_d_prices.csv', table: 'd_prices', columns: 'id,item_name,price,date,currency_id', upload: true},
 ]
 
 const log_mode = 2
@@ -74,7 +76,7 @@ async function insert (table, columns, values) {
         else sql =`insert into ${table} values (${values[i]})`;
 
         try {
-            const result = await pool.query(sql, []);
+            // const result = await pool.query(sql, []);
             if (log_mode == 2)
                 console.log(sql, 'Добавлено строк: ', result.rowCount);
 
@@ -88,14 +90,15 @@ async function insert (table, columns, values) {
 }
 
 async function loadDataFromCSV() {
-    let results = [];
     files.map((file) => {
         if (file.upload) {
-            const result = fs.createReadStream(file.filename)
+            let results = [];
+            fs.createReadStream('data/' + file.filename)
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => { 
-                insertData = []
+                let insertData = new Array();
+                insertData = [];
                 for (row in results) {
                     const values = JSON.stringify(Object.values(results[row])).replace("[",'').replace("]","").replaceAll("\"","'")
                     insertData[row] = values
@@ -107,34 +110,12 @@ async function loadDataFromCSV() {
 }
 
 
-async function createViewVGearOptions() {
-    const sql = `
-    create view v_gear_options as
- with option_prices as (
-select p.price, p.currency_id, p.item_name
-  from s_item_options io,
-       d_prices p
- where p.item_name = io.item_name
-   and p.id = (select max(p2.id) from d_prices p2 where p2.item_name = p.item_name)
-)
-
-select distinct o.name, o.id, o.description, i.id item_id, i.name item_name, d.price, d.currency_id
-         from s_gear_options o
-		      , s_item_options io
-              , d_items i
-			  , option_prices d
-        where io.gear_option_name = o.name
- 		  and i.name = io.item_name
-		  and io.item_name = d.item_name`
-    const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
-}
-
-
 loadDataFromCSV()
 
-// createViewVGear()
-// createViewVMountType()
-// createViewVOutputShaft()
-// createViewVShaftDirection()
-// createViewVGearOptions()
+// await createViewVGear();
+// await createViewVColorOptoins();
+// await createViewVGearOptions();
+// await createViewVMountType();
+// await createViewVOilOptions();
+// await createViewVOutputShaft();
+// await createViewVShaftDirection();

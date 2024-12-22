@@ -1,4 +1,4 @@
-export async function createViewVMountType() {
+const createViewVMountType = async () => {
     const v_mount_type_view = `
     create view v_mount_type as
 SELECT v_gears.id_gear,
@@ -14,3 +14,5 @@ SELECT v_gears.id_gear,
     const v_view = await pool.query(v_mount_type_view, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVMountType = createViewVMountType;

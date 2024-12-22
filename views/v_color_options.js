@@ -1,4 +1,4 @@
-export async function createViewVShaftDirection() {
+const createViewVColorOptoins = async () => {
     const sql = `
     create view v_color_options as
 
@@ -24,3 +24,5 @@ and o.sign <> '0'
     const v_view = await pool.query(sql, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVColorOptoins = createViewVColorOptoins;

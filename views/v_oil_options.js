@@ -1,4 +1,4 @@
-async function createViewVOilOptions() {
+const createViewVOilOptions = async () => {
     const sql = `
 create view v_oil_options as 
  WITH option_prices AS (
@@ -25,3 +25,5 @@ create view v_oil_options as
     const v_view = await pool.query(sql, []);
     console.log('v_gears: ', v_view.rowCount);
 }
+
+module.exports.createViewVOilOptions = createViewVOilOptions;
