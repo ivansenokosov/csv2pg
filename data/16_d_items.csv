@@ -1,4 +1,5 @@
 id,name,quantity,type_id,waiting_period_id
+0,0,0,10,1
 3254,AE2,0,40,1
 3255,AE3,0,40,1
 3256,AE4,0,40,1

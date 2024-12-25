@@ -1,4 +1,4 @@
-const createViewVOilOptions = async () => {
+const createViewVOilOptions = async (pool) => {
     const sql = `
 create view v_oil_options as 
  WITH option_prices AS (

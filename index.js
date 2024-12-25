@@ -27,8 +27,8 @@ const pool = new Pool({
 
    
 const files = [
-              {filename: '1_s_red_gear_types.csv',     table: 's_red_gear_types',     columns: 'id, name, description, mount_position_image', upload: true },
-              {filename: '2_s_red_steps.csv',          table: 's_red_steps',          columns: 'id, steps, kpd',                              upload: true },
+            //   {filename: '1_s_red_gear_types.csv',     table: 's_red_gear_types',     columns: 'id, name, description, mount_position_image', upload: true },
+            //   {filename: '2_s_red_steps.csv',          table: 's_red_steps',          columns: 'id, steps, kpd',                              upload: true },
             //   {filename: '3_s_red_type_of_mounts.csv', table: 's_red_type_of_mounts', columns: 'id, description, image',                      upload: true },
             //   {filename: '4_s_red_type_of_items.csv', table: 's_red_type_of_items', columns: 'id, description, image', upload: true},
             //   {filename: '5_s_red_shaft_directions.csv', table: 's_red_shaft_directions', columns: 'id, description', upload: true},
@@ -54,9 +54,9 @@ const files = [
             //   {filename: 's_output_adapter_image.csv', table: 's_output_adapter_image', columns: '', upload: true},
             //   {filename: '24_s_flange_dimention.csv', table: 's_flange_dimetions', columns: 'id,name,m,n,p,s,flange_type_id,f,flange_image_id,motor_height_id', upload: true},
             //   {filename: '25_s_shaft_dimentions.csv', table: 's_shaft_dimentions', columns: 'id,shaft_type_id,gear_type_id,gearbox_size_id,output_shaft_size', upload: true}, 
-             //  {filename: '26_s_output_adapter.csv', table: 's_output_adapter', columns: '', upload: true}, 
-            //   {filename: '27_s_red_discounts.csv', table: 's_red_discounts', columns: 'id,name,discount', upload: true},
             //   {filename: '28_s_shaft_dimention_data.csv', table: 's_shaft_dimention_data', columns: 'id,SE7,SD6,St9,Sb,HD,Hd9,HQ,HQ1,HQ3,JD2,JD3,Jd8,Jd10,JW,JW1,JW2,JW5,LD5,LQ4,LS6,LW3,LW4,LW6,Lmod,motor_height_id,ID_TYPE_OUTPUT_SHAFT,Size_output_shaft,item_name', upload: true},
+            // {filename: '26_s_output_adapter.csv', table: 's_output_adapter', columns: '', upload: true}, 
+            //   {filename: '27_s_red_discounts.csv', table: 's_red_discounts', columns: 'id,name,discount', upload: true},
             //   {filename: '30_s_color_options.csv', table: 's_color_options', columns: 'id,description,sign,add_description,name', upload: true},
             //   {filename: '31_s_gear_options.csv', table: 's_gear_options', columns: 'id,description,sign,add_description,name', upload: true},
             //   {filename: '32_s_oil_options.csv', table: 's_oil_options', columns: 'id,description,sign,add_description,name', upload: true},
@@ -65,7 +65,7 @@ const files = [
             //   {filename: '35_d_prices.csv', table: 'd_prices', columns: 'id,item_name,price,date,currency_id', upload: true},
 ]
 
-const log_mode = 2
+const log_mode = 1
 
 async function insert (table, columns, values) {
     let inserted_rows = 0;
@@ -76,7 +76,7 @@ async function insert (table, columns, values) {
         else sql =`insert into ${table} values (${values[i]})`;
 
         try {
-            // const result = await pool.query(sql, []);
+            const result = await pool.query(sql, []);
             if (log_mode == 2)
                 console.log(sql, 'Добавлено строк: ', result.rowCount);
 
@@ -110,12 +110,12 @@ async function loadDataFromCSV() {
 }
 
 
-loadDataFromCSV()
+// loadDataFromCSV()
 
-// await createViewVGear();
-// await createViewVColorOptoins();
-// await createViewVGearOptions();
-// await createViewVMountType();
-// await createViewVOilOptions();
-// await createViewVOutputShaft();
-// await createViewVShaftDirection();
+// createViewVGear(pool);
+createViewVColorOptoins(pool);
+createViewVGearOptions(pool);
+createViewVMountType(pool);
+createViewVOilOptions(pool);
+createViewVOutputShaft(pool);
+createViewVShaftDirection(pool);

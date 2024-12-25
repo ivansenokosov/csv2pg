@@ -1,4 +1,4 @@
-const createViewVOutputShaft = async () => {
+const createViewVOutputShaft = async (pool) => {
     const sql = `
     create view v_output_shaft as
 
@@ -6,7 +6,8 @@ SELECT v1.id_gear,
     outshaft.id AS r,
     (outshaft.sign || ' '::text) || outshaft.description AS d,
 	outshaft.id,
-	v1.shaft_aval_list_id list_shaft_id
+	v1.shaft_aval_list_id list_shaft_id,
+    outshaft.image
    FROM s_red_shaft_type_aval listshaft,
     s_red_shaft_types outshaft,
     v_gears v1

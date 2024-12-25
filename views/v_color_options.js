@@ -1,4 +1,4 @@
-const createViewVColorOptoins = async () => {
+const createViewVColorOptoins = async (pool) => {
     const sql = `
     create view v_color_options as
 

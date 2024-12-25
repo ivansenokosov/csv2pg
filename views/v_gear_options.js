@@ -1,4 +1,4 @@
-const createViewVGearOptions = async () => {
+const createViewVGearOptions = async (pool) => {
     const sql = `
     create view v_gear_options as
 

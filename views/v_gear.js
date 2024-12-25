@@ -1,4 +1,4 @@
-const createViewVGear = async () =>{
+const createViewVGear = async (pool) =>{
     const v_gears_view = `
 create view v_gears as 
  WITH prices AS (

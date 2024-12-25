@@ -1,10 +1,14 @@
-const createViewVMountType = async () => {
+const createViewVMountType = async (pool) => {
     const v_mount_type_view = `
     create view v_mount_type as
 SELECT v_gears.id_gear,
     lam.mount_types AS r,
     tm.description,
     tm.image,
+    tm."K",
+    tm."C",
+    tm."F",
+    tm."S",    
 	tm.id
    FROM s_red_list_of_aval_mounts lam,
     s_red_type_of_mounts tm,
