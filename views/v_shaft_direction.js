@@ -16,7 +16,7 @@ async function createViewVShaftDirection(pool) {
   and gt.id = v1.gear_type_id
     `
     const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('v_shaft_direction: ', v_view.rowCount);
 }
 
 module.exports.createViewVShaftDirection = createViewVShaftDirection;

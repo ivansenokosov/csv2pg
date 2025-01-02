@@ -14,7 +14,7 @@ SELECT v1.id_gear,
   WHERE listshaft.shaft_output_types ~~ (('%'::text || outshaft.id) || '%'::text) AND listshaft.id = v1.shaft_aval_list_id
  `
     const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('v_output_shaft: ', v_view.rowCount);
 }
 
 module.exports.createViewVOutputShaft = createViewVOutputShaft;

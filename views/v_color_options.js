@@ -22,7 +22,7 @@ select distinct o.name, o.id, o.sign, o.add_description, o.description, i.id ite
 and o.sign <> '0'
 `
     const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('v_color_options: ', v_view.rowCount);
 }
 
 module.exports.createViewVColorOptoins = createViewVColorOptoins;

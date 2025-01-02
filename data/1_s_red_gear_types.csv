@@ -1,5 +1,5 @@
-id,name,description,mount_position_image
-10,K,Конический,887ac82f-5a2e-47de-b980-2e3a5ab1ec92
-20,C,Цилиндрический,2feeeb98-3262-4bda-b75c-ed37e537e233
-30,S,Червячный,9d6c68e6-9e0f-4ac8-83c0-94f725546004
-40,F,Цилиндрический с параллельными валами,0e7593a4-d6ca-411b-8201-ca90fa409e9f
+id,name,description,mount_position_image,image,shaft_direction_image
+20,C,Цилиндрический,2feeeb98-3262-4bda-b75c-ed37e537e233,c1a010a1-b133-4986-8fdf-9e3acee9eff9,1d639ed8-17d8-471b-97fb-800cdaa3d60c
+30,S,Червячный,9d6c68e6-9e0f-4ac8-83c0-94f725546004,a1a16b69-8654-416a-9b64-22f119a4b3e8,3e2a153e-cc93-4870-9f4a-de7c94e2e4da
+40,F,Цилиндрический с параллельными валами,0e7593a4-d6ca-411b-8201-ca90fa409e9f,6983831c-c7f7-4bfb-892e-c2e0227cce4f,d37f5bee-8c76-403c-a99a-2d1238a5007b
+10,K,Конический,887ac82f-5a2e-47de-b980-2e3a5ab1ec92,8f325c17-1c76-4237-8349-633eec7f24a1,fbacdc91-af39-435c-b734-38e59760ea43

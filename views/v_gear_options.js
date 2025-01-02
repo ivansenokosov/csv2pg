@@ -29,7 +29,7 @@ const createViewVGearOptions = async (pool) => {
   WHERE io.gear_option_name = o.name AND i.name = io.item_name AND io.item_name = d.item_name;
 `
     const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('v_gear_options: ', v_view.rowCount);
 }
 
 module.exports.createViewVGearOptions = createViewVGearOptions;

@@ -16,7 +16,7 @@ SELECT v_gears.id_gear,
   WHERE lam.mount_types LIKE '%'|| tm.id || '%' AND lam.id = v_gears.list_of_aval_mount_id
     `
     const v_view = await pool.query(v_mount_type_view, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('createViewVMountType: ', v_view.rowCount);
 }
 
 module.exports.createViewVMountType = createViewVMountType;

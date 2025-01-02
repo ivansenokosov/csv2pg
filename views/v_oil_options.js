@@ -23,7 +23,7 @@ create view v_oil_options as
   WHERE o.name = i.name
    AND i.name = d.item_name;`
     const v_view = await pool.query(sql, []);
-    console.log('v_gears: ', v_view.rowCount);
+    console.log('v_oil_options: ', v_view.rowCount);
 }
 
 module.exports.createViewVOilOptions = createViewVOilOptions;
