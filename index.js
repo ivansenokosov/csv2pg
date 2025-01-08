@@ -54,6 +54,7 @@ const files = [
               {filename: 's_flange_dimention_image.csv', table: 's_flange_dimention_image', columns: '', upload: true},
               {filename: '26_s_output_adapter_image.csv', table: 's_output_adapter_image', columns: '', upload: true},
               {filename: '24_s_flange_dimention.csv', table: 's_flange_dimetions', columns: '', upload: true},
+              {filename: '24_s_flange_dimention_addon.csv', table: 's_flange_dimentions_addon', columns: '', upload: true},
               {filename: '25_s_shaft_dimentions.csv', table: 's_shaft_dimentions', columns: 'id,shaft_type_id,gear_type_id,gearbox_size_id,output_shaft_size', upload: true}, 
               {filename: '28_s_shaft_dimention_data.csv', table: 's_shaft_dimention_data', columns: '', upload: true},
               {filename: '26_s_output_adapter.csv', table: 's_output_adapter', columns: '', upload: true}, 
@@ -64,6 +65,7 @@ const files = [
               {filename: '33_s_warranty_options.csv', table: 's_warranty_options', columns: 'id,name,description,sign,add_description', upload: true},
               {filename: '34_s_item_options.csv', table: 's_item_options', columns: 'id,gear_size_list_id,gear_type_id,color_option_name,gear_option_name,item_name,oil_option_name', upload: true},
               {filename: '35_d_prices.csv', table: 'd_prices', columns: 'id,item_name,price,date,currency_id', upload: true},
+              {filename: '36_s_mass.csv', table: 's_mass', columns: '', upload: true},
 ]
 
 async function loadDataFromCSV() {
@@ -94,13 +96,15 @@ async function loadDataFromCSV() {
     }
 }
 
+async function createView() {
+    await createViewVGear(pool);
+    await createViewVColorOptoins(pool);
+    await createViewVGearOptions(pool);
+    await createViewVMountType(pool);
+    await createViewVOilOptions(pool);
+    await createViewVOutputShaft(pool);
+    await createViewVShaftDirection(pool);
+}
 
-// loadDataFromCSV()
-
-// createViewVGear(pool);
-createViewVColorOptoins(pool);
-createViewVGearOptions(pool);
-createViewVMountType(pool);
-createViewVOilOptions(pool);
-createViewVOutputShaft(pool);
-createViewVShaftDirection(pool);
+loadDataFromCSV()
+createView()
